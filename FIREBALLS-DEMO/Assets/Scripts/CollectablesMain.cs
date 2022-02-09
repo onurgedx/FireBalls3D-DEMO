@@ -32,13 +32,13 @@ public class CollectablesMain : MonoBehaviour
     {
         goDown();
         transform.Rotate(0, Time.deltaTime * SpinSpeed, 0);
-        
+        ifAllCollectablesIsGone();
     }
     
     //inspector de bir sey degisince burasi calisacak
     private void OnValidate()
     {
-        createCollectable();
+        //createCollectable();
 
 
         }
@@ -51,6 +51,8 @@ public class CollectablesMain : MonoBehaviour
         GameObject go =  Instantiate(collectablexd, posNewCollectable, Quaternion.Euler(0,transform.childCount*90 +transform.rotation.eulerAngles.y, 0), transform);
         
         go.GetComponent<Renderer>().material = transform.childCount%2==0 ? gold: go.GetComponent<Renderer>().sharedMaterial;
+        
+        maxCountOfcollectable = transform.childCount;
 
     }
 
@@ -58,8 +60,22 @@ public class CollectablesMain : MonoBehaviour
     private void goDown()
     {
         transform.position = Vector3.Lerp(transform.position, startPos - collectableSizeY*(maxCountOfcollectable-transform.childCount)*Vector3.up, Time.deltaTime*10);
+
     }
 
+
+
+
+    private void ifAllCollectablesIsGone()
+    {
+        if(transform.childCount == 0)
+        {
+            //transform.parent.GetChild(1);
+            Destroy(transform.gameObject);
+        }
+
+        
+    }
 
 
 

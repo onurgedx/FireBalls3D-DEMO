@@ -81,8 +81,10 @@ public class Gamexd : MonoBehaviour
     }
 
 
-    public static void goMenu()
+    public static IEnumerator goMenu(float timeCounter =0f)
     {
+        
+        yield return new WaitForSeconds(timeCounter);
         SceneManager.LoadScene("Menu");
     }
     
