@@ -15,6 +15,7 @@ public class Gamexd : MonoBehaviour
 
     public static bool isTankAlive=true;
 
+    
 
 
     // Start is called before the first frame update
@@ -22,12 +23,29 @@ public class Gamexd : MonoBehaviour
     {
 
 
+        if(OnlineSceneName == "Menu")
+        { 
+            volumeChange(AudioListener.volume);
+            //volumeGameStaticProperty = AudioListener.volume;
+        }
+        else if(OnlineSceneName == "DenemeTahtasi")
+        {
+            GameObject.Find("Level").GetComponent<TextMesh>().text = "Level " + level.ToString();
+        }
 
-        volumeChange(AudioListener.volume);
-        //volumeGameStaticProperty = AudioListener.volume;
 
+    }
 
-
+    public static int level
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("level");
+        }
+        set
+        {
+            PlayerPrefs.SetInt("level", value);
+        }
 
     }
 
@@ -81,17 +99,33 @@ public class Gamexd : MonoBehaviour
     }
 
 
-    public static IEnumerator goMenu(float timeCounter =0f)
+    public static IEnumerator goSceneName(float timeCounter =0f,string SName = "Menu")
     {
         
         yield return new WaitForSeconds(timeCounter);
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene(SName);
     }
     
 
-    
-    
+    public void GoNextScene()
+    {
 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+
+    }    
+    public void goMenu()
+    {
+       StartCoroutine( goSceneName());
+    }
+
+    public static string OnlineSceneName
+    {
+        get
+        {
+            return SceneManager.GetActiveScene().name;
+        }
+    }
 
 
 }

@@ -14,7 +14,7 @@ public class Playerxd : MonoBehaviour
     void Start()
     {
         allCollectables = GameObject.FindGameObjectWithTag("AllCollectables");
-
+        Gamexd.isTankAlive = true;
     }
 
     // Update is called once per frame
@@ -34,8 +34,10 @@ public class Playerxd : MonoBehaviour
     public void explodeTank()
     {
         explode.SetActive(true);
-        //Gamexd.isTankAlive = false;
-        
+        Gamexd.isTankAlive = false;
+
+        StartCoroutine(Gamexd.goSceneName(2, Gamexd.OnlineSceneName));
+
         // reset the scene
         // kaybettigin icin beklet biraz zaman geçince resetlensin oyun
 
@@ -56,7 +58,8 @@ public class Playerxd : MonoBehaviour
             
             if(!isWin){
                 isWin = true;
-            StartCoroutine(Gamexd.goMenu(2f));
+                Gamexd.level++;
+             StartCoroutine(Gamexd.goSceneName(2f,Gamexd.OnlineSceneName));
 
             }
             

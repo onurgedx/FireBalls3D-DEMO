@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public class Reflectaclexd : MonoBehaviour
 {
-
+    
     public float distanceToOne=7;
     public float speedSpin=10;
     public int index_collectable;
