@@ -18,6 +18,8 @@ public class collectableSquare : MonoBehaviour
 
     private IEnumerator Vanishing()
     {
+        transform.parent.parent.gameObject.GetComponent<AudioSource>().Play();
+
         transform.parent = null;
         setUncollable();// carpma ozelligini kapatiyor
         while (GetComponent<Renderer>().material.color.a>0.1f)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Gamexd : MonoBehaviour
 {
@@ -30,7 +31,8 @@ public class Gamexd : MonoBehaviour
         }
         else if(OnlineSceneName == "DenemeTahtasi")
         {
-            GameObject.Find("Level").GetComponent<TextMesh>().text = "Level " + level.ToString();
+            // textMeshProUGUI þeklinde tanýmlarýz text mesh proyu . bu textMeshProUGUI yi kullanabilmek için using TMPro; þeklinde import iþlemi gereklidir.
+            GameObject.Find("Level").GetComponent<TextMeshProUGUI>().text = "Level " + level.ToString();
         }
 
 
@@ -40,6 +42,7 @@ public class Gamexd : MonoBehaviour
     {
         get
         {
+           
             return PlayerPrefs.GetInt("level");
         }
         set

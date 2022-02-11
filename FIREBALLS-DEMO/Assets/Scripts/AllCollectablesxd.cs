@@ -22,10 +22,10 @@ public class AllCollectablesxd : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         //foreach(CollectablesMainClass ctmc in CollectablesList)
-        for(int i=0;i<=Gamexd.level; i++)
+        for(int i=0;i<Gamexd.level; i++)
         {
            GameObject ctmcGo =  Instantiate(Collectablesxd, transform.GetChild(transform.childCount - 1).position + Vector3.forward * 30, Quaternion.identity, transform);
            
@@ -33,7 +33,15 @@ public class AllCollectablesxd : MonoBehaviour
         
         
         }
+       
 
+        
+    }
+    private void Start()
+    {
+        GameObject allRef = GameObject.FindGameObjectWithTag("AllReflectacles");
+        
+        allRef.GetComponent<AllReflectablesxd>().ReflectaclesCreate();
         
     }
 

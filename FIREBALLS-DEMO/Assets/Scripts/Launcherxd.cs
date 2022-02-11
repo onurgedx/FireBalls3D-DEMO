@@ -30,9 +30,24 @@ public class Launcherxd : MonoBehaviour
 
     public void clickLaunch()
     {
-        if(Input.GetMouseButtonDown(0))
+
+        if(TouchOrClick())
         {
             Launchxd();
         }
+    }
+
+    private bool TouchOrClick()
+    {
+#if UNITY_EDITOR
+
+    return Input.GetMouseButtonDown(0);
+    #endif
+
+#if UNITY_ANDROID
+    return Input.touchCount >= 1 && Input.GetTouch(0).phase == TouchPhase.Began;
+    #endif
+
+
     }
 }
