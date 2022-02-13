@@ -7,18 +7,9 @@ public class AllCollectablesxd : MonoBehaviour
 
     public GameObject Collectablesxd;
 
-    [Serializable]
-    private class CollectablesMainClass
-    {
-        public int collectableCount;
-        
-        public float SpinSpeed = 20f;
+   
 
-        
-
-    }
-
-    [SerializeField] private List<CollectablesMainClass> CollectablesList;
+    
 
 
     // Start is called before the first frame update

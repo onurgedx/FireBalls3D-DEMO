@@ -18,21 +18,37 @@ public class collectableSquare : MonoBehaviour
 
     private IEnumerator Vanishing()
     {
-        transform.parent.parent.gameObject.GetComponent<AudioSource>().Play();
+        OnBoomSound();
 
-        transform.parent = null;
+        EvlatliktanReddet(); 
         setUncollable();// carpma ozelligini kapatiyor
         while (GetComponent<Renderer>().material.color.a>0.1f)
         {
-            
-            transform.localScale *= 1.026f;
+
+            scaleAugmentation(1.026f);
             // ise yaramasi icin material i opaque den transparent e getirmelisin 
-            GetComponent<Renderer>().material.color -= new Color(0, 0, 0, Time.deltaTime*6); 
+            MakeMoreTransparent(6); 
             yield return null;
         }
 
         
         Destroy(gameObject);
+    }
+    private void OnBoomSound()
+    {
+        transform.parent.parent.gameObject.GetComponent<AudioSource>().Play();
+    }
+    private void EvlatliktanReddet()
+    {
+        transform.parent = null;
+    }
+    private void MakeMoreTransparent(float ScaleAmountEvereyFrame = 6f)
+    {
+        GetComponent<Renderer>().material.color -= new Color(0, 0, 0, Time.deltaTime * ScaleAmountEvereyFrame);
+    }
+    private void scaleAugmentation(float AmountAugmentation = 1.026f)
+    {
+        transform.localScale *= AmountAugmentation;
     }
     private void setUncollable()// carpma ozelligini kapatiyor
     {

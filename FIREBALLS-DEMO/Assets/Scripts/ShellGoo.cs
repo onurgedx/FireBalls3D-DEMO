@@ -38,6 +38,8 @@ public class ShellGoo : MonoBehaviour
         {
             Debug.Log("carpti");
             transform.Rotate(0, 180, 0);
+            
+            gameObject.layer = 0; // carpilir hale getirir
 
         }
         else if(coll.gameObject.CompareTag("collectableCircle"))

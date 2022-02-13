@@ -70,6 +70,11 @@ public class CollectablesMain : MonoBehaviour
     {
         if(transform.childCount == 0)
         {
+            foreach(GameObject go in GameObject.FindGameObjectsWithTag("Shell"))
+            {
+                Destroy(go);
+
+            }
             //transform.parent.GetChild(1);
             Destroy(transform.gameObject);
         }
