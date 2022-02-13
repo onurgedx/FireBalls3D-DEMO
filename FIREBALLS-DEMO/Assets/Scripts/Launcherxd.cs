@@ -24,7 +24,8 @@ public class Launcherxd : MonoBehaviour
 
     private void Launchxd()
     {
-        Instantiate(Shellxd, transform.position, transform.rotation,null);
+        if (!Playerxd.isMove)
+        { Instantiate(Shellxd, transform.position, transform.rotation, null); }
     }
 
 

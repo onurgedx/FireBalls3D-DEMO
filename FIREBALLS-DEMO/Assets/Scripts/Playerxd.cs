@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Playerxd : MonoBehaviour
 {
 
+    public static bool isMove;
     public float MoveSpeed = 1;
     public float distanceToCollectable;
     public GameObject explode;
@@ -81,17 +82,29 @@ public class Playerxd : MonoBehaviour
     }
     private void goToCollectables(){
     
-        if (allCollectables.transform.childCount != 0) { 
-         Vector3  saveYPosition=  new Vector3(1, 0, 1);
-
-        Vector3 GonnaGoPosition = Vector3.Scale(allCollectables.transform.GetChild(0).position, saveYPosition) - Vector3.forward*distanceToCollectable;
-
-        transform.position = Vector3.Lerp(transform.position ,GonnaGoPosition , Time.deltaTime*MoveSpeed);
+        if (allCollectables.transform.childCount != 0) {
+            GoForward();// ileri gider eger onunde engel yoksa
         }
         else{
-            YouWon();
+            YouWon();// sahnede hic engel yoksa oyunu kazandýn demektir
             
             }
+
+    }
+    private void GoForward()
+    {
+        Vector3 saveYPosition = new Vector3(1, 0, 1);
+
+        Vector3 GonnaGoPosition = Vector3.Scale(allCollectables.transform.GetChild(0).position, saveYPosition) - Vector3.forward * distanceToCollectable;
+
+        if (Vector3.Distance(transform.position, GonnaGoPosition) > 1)
+        {
+            isMove = true;
+        }
+        else { isMove = false; }
+
+
+        transform.position = Vector3.Lerp(transform.position, GonnaGoPosition, Time.deltaTime * MoveSpeed);
 
     }
 
